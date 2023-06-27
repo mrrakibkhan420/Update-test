@@ -315,7 +315,7 @@ def rcrack1(uid,pwx,tl):
     global proxy
     try:
         for ps in pwx:
-                        pro = random.choice(ugen)
+            pro = random.choice(ugen)
             session = requests.Session()
             free_fb = session.get('https://p.facebook.com').text
             log_data = {
